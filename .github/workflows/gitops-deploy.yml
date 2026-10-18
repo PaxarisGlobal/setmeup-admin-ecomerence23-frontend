@@ -50,7 +50,7 @@ jobs:
 
             - name: Update k8 image tag
               run: |
-                    sed -E -i.bak "s|^([[:space:]]*)image:[[:space:]].*|\1image: ${{ steps.vars.outputs.image_repo }}:${{ steps.vars.outputs.image_tag }}|" k8/deployment.yaml
+                    sed -E -i.bak "s|^([[:space:]]*)image:[[:space:]]*.*${{ steps.vars.outputs.image_repo }}[[:space:]]*.*$|\1image: ${{ steps.vars.outputs.image_repo }}:${{ steps.vars.outputs.image_tag }}|" k8/deployment.yaml
                     rm -f k8/deployment.yaml.bak
 
             - name: Commit and push manifest changes
